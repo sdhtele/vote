@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, Alert, Tab, Tabs, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { getImages, addImage, deleteImage, getResults } from '../utils/api';
-import { getSettings, updateSettings } from '../utils/api';
+import { getImages, addImage, deleteImage, getResults, getVotes, getSettings, updateSettings } from '../utils/api';
 
 const AdminDashboard = () => {
   const [images, setImages] = useState([]);
@@ -21,12 +20,13 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('adminToken');
 
-  if (!token) {
-    navigate('/admin/login');
-    return null;
-  }
-
   useEffect(() => {
+    // Check authentication first
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+
     fetchImages();
     fetchResults();
     fetchVotes();
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
 
     // Clean up interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [token, navigate]);
 
   const fetchImages = async () => {
     try {

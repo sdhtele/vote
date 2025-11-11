@@ -57,6 +57,24 @@ export const getResults = async (token) => {
   return response.data;
 };
 
+export const getSettings = async (token) => {
+  const response = await axios.get(`${API_BASE_URL}/admin/settings`, {
+    headers: {
+      'x-auth-token': token
+    }
+  });
+  return response.data;
+};
+
+export const updateSettings = async (settings, token) => {
+  const response = await axios.post(`${API_BASE_URL}/admin/settings`, settings, {
+    headers: {
+      'x-auth-token': token
+    }
+  });
+  return response.data;
+};
+
 // Public API calls
 export const getVotingImages = async () => {
   const response = await axios.get(`${API_BASE_URL}/votes/images`);
@@ -74,33 +92,5 @@ export const submitVote = async (imageId, name, nim) => {
 
 export const getVotingResults = async () => {
   const response = await axios.get(`${API_BASE_URL}/votes/results`);
-  return response.data;
-};
-
-// Admin API calls
-export const getVotes = async (token) => {
-  const response = await axios.get(`${API_BASE_URL}/admin/votes`, {
-    headers: {
-      'x-auth-token': token
-    }
-  });
-  return response.data;
-};
-
-export const getSettings = async (token) => {
-  const response = await axios.get(`${API_BASE_URL}/admin/settings`, {
-    headers: {
-      'x-auth-token': token
-    }
-  });
-  return response.data;
-};
-
-export const updateSettings = async (settings, token) => {
-  const response = await axios.post(`${API_BASE_URL}/admin/settings`, settings, {
-    headers: {
-      'x-auth-token': token
-    }
-  });
   return response.data;
 };
