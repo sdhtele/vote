@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  }, [token, getImages]);
+  }, [token]);
 
   const fetchResults = useCallback(async () => {
     try {
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error('Failed to load results:', err);
     }
-  }, [token, getResults]);
+  }, [token]);
 
   const fetchVotes = useCallback(async () => {
     try {
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error('Failed to load votes:', err);
     }
-  }, [token, getVotes]);
+  }, [token]);
 
   const fetchSettings = useCallback(async () => {
     try {
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
     } catch (err) {
       console.error('Failed to load settings:', err);
     }
-  }, [token, getSettings]);
+  }, [token]);
 
   useEffect(() => {
     // Check authentication first
