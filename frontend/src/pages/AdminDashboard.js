@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, Alert, Tab, Tabs, Badge } from 'react-bootstrap';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Container, Row, Col, Card, Button, Form, Alert, Tab, Tabs } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { getImages, addImage, deleteImage, getResults, getVotes, getSettings, updateSettings } from '../utils/api';
 
@@ -19,6 +19,49 @@ const AdminDashboard = () => {
 
   const navigate = useNavigate();
   const token = localStorage.getItem('adminToken');
+
+  // Define fetch functions using useCallback to prevent dependency issues
+  const fetchImages = useCallback(async () => {
+    try {
+      setLoading(true);
+      const data = await getImages(token);
+      setImages(data);
+      setError(null);
+    } catch (err) {
+      setError('Failed to load images');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [token, getImages]);
+
+  const fetchResults = useCallback(async () => {
+    try {
+      const data = await getResults(token);
+      setResults(data);
+    } catch (err) {
+      console.error('Failed to load results:', err);
+    }
+  }, [token, getResults]);
+
+  const fetchVotes = useCallback(async () => {
+    try {
+      const data = await getVotes(token);
+      setVotes(data);
+    } catch (err) {
+      console.error('Failed to load votes:', err);
+    }
+  }, [token, getVotes]);
+
+  const fetchSettings = useCallback(async () => {
+    try {
+      const data = await getSettings(token);
+      setSettings(data);
+      setDeadline(data.votingDeadline ? new Date(data.votingDeadline).toISOString().slice(0, 16) : '');
+    } catch (err) {
+      console.error('Failed to load settings:', err);
+    }
+  }, [token, getSettings]);
 
   useEffect(() => {
     // Check authentication first
@@ -42,49 +85,7 @@ const AdminDashboard = () => {
 
     // Clean up interval on component unmount
     return () => clearInterval(interval);
-  }, [token, navigate]);
-
-  const fetchImages = async () => {
-    try {
-      setLoading(true);
-      const data = await getImages(token);
-      setImages(data);
-      setError(null);
-    } catch (err) {
-      setError('Failed to load images');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchResults = async () => {
-    try {
-      const data = await getResults(token);
-      setResults(data);
-    } catch (err) {
-      console.error('Failed to load results:', err);
-    }
-  };
-
-  const fetchVotes = async () => {
-    try {
-      const data = await getVotes(token);
-      setVotes(data);
-    } catch (err) {
-      console.error('Failed to load votes:', err);
-    }
-  };
-
-  const fetchSettings = async () => {
-    try {
-      const data = await getSettings(token);
-      setSettings(data);
-      setDeadline(data.votingDeadline ? new Date(data.votingDeadline).toISOString().slice(0, 16) : '');
-    } catch (err) {
-      console.error('Failed to load settings:', err);
-    }
-  };
+  }, [token, navigate, fetchImages, fetchResults, fetchVotes, fetchSettings]);
 
   const handleAddImage = async (e) => {
     e.preventDefault();

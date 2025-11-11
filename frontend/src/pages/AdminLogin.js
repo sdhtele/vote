@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { adminLogin } from '../utils/api';
 
@@ -30,7 +30,7 @@ const AdminLogin = () => {
 
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
-      <Col md={6} lg={4}>
+      <div className="col-md-6 col-lg-4">
         <Card>
           <Card.Header className="text-center">
             <h3>Admin Login</h3>
@@ -67,7 +67,7 @@ const AdminLogin = () => {
             </Form>
           </Card.Body>
         </Card>
-      </Col>
+      </div>
     </Container>
   );
 };

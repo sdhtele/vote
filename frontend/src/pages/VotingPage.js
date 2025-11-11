@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Alert, Form, Badge, ProgressBar, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Alert, Form, Badge, FloatingLabel } from 'react-bootstrap';
 import { getVotingImages, submitVote } from '../utils/api';
 
 const VotingPage = () => {
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [showForm, setShowForm] = useState(true); // Show form initially
