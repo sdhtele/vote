@@ -1,0 +1,147 @@
+/* Custom styles for the voting app */
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* Voting Page Styles */
+.voting-header {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.voting-page-gradient {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* Footer styles */
+footer {
+  margin-top: auto;
+}
+
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.vote-button {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+.vote-button:hover {
+  background-color: #218838 !important;
+  border-color: #1e7e34 !important;
+}
+
+/* Admin Dashboard Styles */
+.admin-header {
+  background: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-bottom: 1rem;
+}
+
+.tab-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top: none;
+}
+
+.admin-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.logout-btn {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.logout-btn:hover {
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .voting-header {
+    padding: 1rem 0;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animation for success messages */
+.alert-success {
+  animation: fadeInDown 0.5s;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer styles */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+}
