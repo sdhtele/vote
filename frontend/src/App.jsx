@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 // Pages
-import VotingPage from './pages/VotingPage';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
+import VotingPage from './pages/VotingPage.jsx';
+import AdminLogin from './pages/AdminLogin.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
 
 function App() {
   return (
